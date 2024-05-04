@@ -1,3 +1,6 @@
+/* src/index.css or wherever your main stylesheet is located */
+@import 'normalize.css';
+
 * {
   margin: 0;
 }
