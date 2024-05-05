@@ -1,3 +1,4 @@
+// firebase hosting: https://netflix-clone-d76c3.web.app/
 import React from "react";
 import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
@@ -5,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 
 function App() {
-  const user  = null;
+  const user = null;
 
   return (
     <div className="app">
