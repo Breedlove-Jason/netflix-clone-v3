@@ -23,11 +23,11 @@ function App() {
           }),
         );
       } else {
-        dispatch(logout); // logged out
+        dispatch(logout()); // logged out
       }
     });
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">

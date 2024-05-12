@@ -10,24 +10,25 @@ const ProfileScreen = () => {
   return (
     <div className="profileScreen">
       <Nav />
-      <div className="profileScreen__body"></div>
-      <h1>Edit Profile</h1>
-      <div className="profileScreen__info">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-          alt="Netflix Avatar"
-        />
-        <div className="profileScreen__details">
-          <h2>{user.email}</h2>
-          <div className="profileScreen__plans">
-            <button
-              className={"profileScreen__signOut"}
-              onClick={() => {
-                auth.signOut();
-              }}
-            >
-              Sign Out
-            </button>
+      <div className="profileScreen__body">
+        <h1>Edit Profile</h1>
+        <div className="profileScreen__info">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+            alt="Netflix Avatar"
+          />
+          <div className="profileScreen__details">
+            <h2>{user.email}</h2>
+            <div className="profileScreen__plans">
+              <button
+                className={"profileScreen__signOut"}
+                onClick={() => {
+                  auth.signOut();
+                }}
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         </div>
       </div>
