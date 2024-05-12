@@ -10,7 +10,7 @@ import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
-  const user = null;
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -18,8 +18,8 @@ function App() {
         // logged in
         dispatch(
           login({
-            uid: user.uid,
-            email: user.email,
+            uid: userAuth.uid,
+            email: userAuth.email,
           }),
         );
       } else {
@@ -37,7 +37,7 @@ function App() {
         ) : (
           <>
             <Routes>
-              <Route path={"profile"} element={<ProfileScreen />}></Route>
+              <Route path={"/profile"} element={<ProfileScreen />}></Route>
             </Routes>
             <Routes>
               <Route exact path="/" element={<HomeScreen />}></Route>
