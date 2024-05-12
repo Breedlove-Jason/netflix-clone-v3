@@ -1,6 +1,10 @@
+.row__title{
+  padding-left: 20px;
+}
 .row {
-  color: white;
-  margin-left: 20px;
+  color: #fff;
+  background-color: #000;
+  /*margin-left: 20px;*/
 }
 
 .row__posters {
@@ -33,3 +37,4 @@
   transform: scale(1.09);
   opacity: 1
 }
+

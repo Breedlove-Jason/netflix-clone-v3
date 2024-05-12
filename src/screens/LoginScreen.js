@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 import SignUpScreen from "./SignUpScreen";
 
 const LoginScreen = () => {
   const [signIn, setSignIn] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    setSignIn(true);
+    // Add any login logic you might have here
+
+    navigate("/profile"); // Redirect to profile
+  };
+
   return (
     <div className={"loginScreen"}>
       <div className="loginScreen__background">
@@ -14,7 +24,7 @@ const LoginScreen = () => {
         />
         <button
           className={"loginScreen__button"}
-          onClick={() => setSignIn(true)}
+          onClick={() => handleSignIn()}
         >
           Sign In
         </button>
