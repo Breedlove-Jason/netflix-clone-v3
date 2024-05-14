@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PlansScreen.css";
 import db from "../firebase";
+import { selectUser } from "../features/userSlice";
+import { useSelector } from "react-redux";
+import { loadStripe } from "@stripe/stripe-js";
 
 const PlansScreen = () => {
   const [products, setProducts] = useState([]);
+  const user = useSelector(selectUser);
   useEffect(() => {
     const fetchProducts = async () => {
       const products = {};
@@ -27,6 +31,29 @@ const PlansScreen = () => {
     fetchProducts();
   }, []);
   console.log(products);
+  const loadCheckout = async (priceId) => {
+    const docRef = await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("checkout_sessions")
+      .add({
+        price: priceId,
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
+    docRef.onSnapshot(async (snap) => {
+      const { error, sessionId } = snap.data();
+      if (error) {
+        alert(`An error occurred: ${error.message}`);
+      }
+      if (sessionId) {
+        const stripe = await loadStripe(
+          "pk_test_51PFnMI01foXv66KIhbVeWG24hWrFBnmaiIVcJkEp93TFWYqngYdLp84GGxdeEAbDEHIJwd69vGz4Lhys2K2mcftV00EVE4CCOc",
+        );
+        await stripe.redirectToCheckout({ sessionId });
+      }
+    }); // Added closing bracket here
+  };
 
   return (
     <div className="plansScreen">
@@ -38,7 +65,9 @@ const PlansScreen = () => {
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button>Subscribe</button>
+            <button onClick={() => loadCheckout(productData.prices.priceId)}>
+              Subscribe
+            </button>
           </div>
         );
       })}
