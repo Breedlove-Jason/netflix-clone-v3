@@ -10,6 +10,7 @@ import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
+  // Code snippet for handling user authentication using React, Redux, and Firebase.
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   useEffect(() => {
