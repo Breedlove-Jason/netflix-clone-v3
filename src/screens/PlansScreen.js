@@ -8,6 +8,25 @@ import { loadStripe } from "@stripe/stripe-js";
 const PlansScreen = () => {
   const [products, setProducts] = useState([]);
   const user = useSelector(selectUser);
+  const [subscription, setSubscription] = useState(null);
+
+  useEffect(() => {
+    db.collection("customers")
+      .doc(user.uid)
+      .collection("subscriptions")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(async (subscription) => {
+          setSubscription({
+            role: subscription.data().role,
+            current_period_end: subscription.data().current_period_end.seconds,
+            current_period_start:
+              subscription.data().current_period_start.seconds,
+          });
+        });
+      });
+  }, [user.uid]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       const products = {};
@@ -31,6 +50,7 @@ const PlansScreen = () => {
     fetchProducts();
   }, []);
   console.log(products);
+  console.log(subscription);
   const loadCheckout = async (priceId) => {
     const docRef = await db
       .collection("customers")
@@ -57,17 +77,36 @@ const PlansScreen = () => {
 
   return (
     <div className="plansScreen">
+      <br />
+      {subscription && (
+        <p>
+          Renewal Date:{" "}
+          {new Date(
+            subscription?.current_period_end * 1000,
+          ).toLocaleDateString()}
+        </p>
+      )}
       {Object.entries(products).map(([productId, productData]) => {
-        // add some logic to check if user's subscription is active
+        const isCurrentPackage = productData.name
+          ?.toLowerCase()
+          .includes(subscription?.role);
         return (
-          <div key={productId} className="plansScreen__plan">
+          <div
+            key={productId}
+            className={`${isCurrentPackage && "plansScreen__plan--disabled"} plansScreen__plan`}
+          >
             <div className="plansScreen__info">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button onClick={() => loadCheckout(productData.prices.priceId)}>
-              Subscribe
-            </button>
+            {productData.prices.map((price, index) => (
+              <button
+                key={index}
+                onClick={() => !isCurrentPackage && loadCheckout(price.priceId)}
+              >
+                {isCurrentPackage ? "Current Package" : "Subscribe"}
+              </button>
+            ))}
           </div>
         );
       })}
