@@ -1,3 +1,4 @@
+/* General style for the banner, setting its relative position, height, color, and fit */
 .banner {
   position: relative;
   height: 448px;
@@ -5,18 +6,21 @@
   object-fit: contain;
 }
 
+/* Container for banner contents, setting margin, padding, and height */
 .banner__contents {
   margin-left: 30px;
   padding-top: 140px;
   height: 190px;
 }
 
+/* Style for the title within the banner, including font size, weight, and padding */
 .banner__title {
   font-size: 3rem;
   font-weight: 800;
   padding-bottom: 0.3rem;
 }
 
+/* Style for the description text in the banner, controlling width, line height, font size, and padding */
 .banner__description {
   width: 45rem;
   line-height: 1.3;
@@ -26,6 +30,8 @@
   height: 80px;
   padding-bottom: 1rem;
 }
+
+/* Gradient effect at the bottom of the banner */
 .banner--fadeBottom {
   height: 7.4rem;
   background-image: linear-gradient(
@@ -36,6 +42,7 @@
   );
 }
 
+/* Button styles within the banner, including cursor style, color, outline, border, and padding */
 .banner__button {
   cursor: pointer;
   color: #fff;
@@ -48,6 +55,7 @@
   background-color: rgba(51, 51, 51, 0.5);
 }
 
+/* Hover effect for buttons, changing colors and adding a transition for smooth effect */
 .banner__button:hover {
   color: #000;
   background-color: #e6e6e6;

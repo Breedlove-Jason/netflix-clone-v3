@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./Banner.css";
-import axios from "./axios";
-import requests from "./Requests";
+import axios from "../../axios";
+import requests from "../../Requests";
 
+// Banner component to display the featured movie's banner
 function Banner() {
   const [movie, setMovie] = useState([]);
+
+  // Fetches a random movie from Netflix originals upon component mounting
   useEffect(() => {
     async function fetchData() {
+      // Makes a GET request to fetch Netflix originals
       const request = await axios.get(requests.fetchNetflixOriginals);
+      // Sets a random movie from the fetched data
       setMovie(
         request.data.results[
           Math.floor(Math.random() * request.data.results.length - 1)
@@ -17,10 +22,13 @@ function Banner() {
     }
     fetchData();
   }, []);
-  // console.log(movie);
+
+  // Truncates text based on the specified length 'n'
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
   }
+
+  // Renders the banner with movie details and background image
   return (
     <header
       className="banner"
@@ -32,7 +40,7 @@ function Banner() {
     >
       <div className="banner__contents">
         <h1 className="banner__title">
-          {movie?.title || movie?.name || movie?.original}
+          {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className="banner__buttons">
           <button className="banner__button">Play</button>
