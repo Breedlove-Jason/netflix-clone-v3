@@ -1,40 +1,41 @@
+/* The main navigation bar */
 .nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  width: 100%;
-
-  padding: 20px;
-  z-index: 1;
-
-  /* Animations */
-  transition-timing-function: ease-in;
-  transition: all 0.5s;
+  position: fixed; /* Fixed position to stay on top */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  right: 0; /* Align to the right */
+  width: 100%; /* Full width */
+  height: 30px; /* Fixed height */
+  padding: 20px; /* Padding around the content */
+  z-index: 1; /* Stack order */
+  transition: all 0.5s ease-in; /* Transition effect for all changes */
 }
 
+/* The container for navigation bar content */
 .nav__contents {
-  display: flex;
-  justify-content: space-between;
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out the flex items */
 }
 
+/* The logo in the navigation bar */
 .nav__logo {
-  position: fixed;
-  left: 20px;
-  width: 80px;
-  object-fit: contain;
-  padding-left: 20px;
-  cursor: pointer;
+  position: fixed; /* Fixed position to stay in place */
+  left: 20px; /* Position from the left */
+  width: 80px; /* Fixed width */
+  object-fit: contain; /* Resize the content to fit the container */
+  padding-left: 20px; /* Padding to the left of the content */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
+/* The style for the navigation bar when scrolled */
 .nav__black {
-  background-color: black;
+  background-color: black; /* Change background color to black */
 }
 
+/* The user avatar in the navigation bar */
 .nav__avatar {
-  cursor: pointer;
-  position: fixed;
-  right: 20px;
-  width: 30px;
+  position: fixed; /* Fixed position to stay in place */
+  right: 20px; /* Position from the right */
+  width: 30px; /* Fixed width */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
