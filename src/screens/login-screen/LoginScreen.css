@@ -1,19 +1,23 @@
+/* General styles for the login screen */
 .loginScreen {
   position: relative;
-  /*height: 100%;*/
-  min-height: 100vh !important;
+  min-height: 100vh; /* Ensures the login screen takes at least the full height of the viewport */
   background: url("https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png")
-    center no-repeat fixed !important;
+    center no-repeat fixed;
+  /* Background settings ensure a fixed, full-cover image */
 }
 
+/* Styling for the Netflix logo in the top left corner */
 .loginScreen__logo {
   position: fixed;
   left: 0;
+  top: 0; /* Added to ensure top alignment */
   width: 150px;
   object-fit: contain;
   padding: 20px;
 }
 
+/* Button style for signing in, positioned top-right */
 .loginScreen__button {
   position: fixed;
   right: 20px;
@@ -21,12 +25,13 @@
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #e50914;
+  background-color: #e50914; /* Netflix's brand red */
   cursor: pointer;
   border: none;
   font-weight: 600;
 }
 
+/* Gradient overlay to enhance text visibility against the background */
 .loginScreen__gradient {
   position: fixed;
   z-index: 1;
@@ -41,6 +46,7 @@
     );
 }
 
+/* Main content area of the login screen, centered */
 .loginScreen__body {
   z-index: 1;
   color: #fff;
@@ -52,6 +58,12 @@
   text-align: center;
   left: 0;
   right: 0;
+}
+
+/* Styling for various headings in the login screen body */
+.loginScreen__body > h1 {
+  font-size: 3.125rem;
+  margin-bottom: 20px;
 }
 
 .loginScreen__body > h2 {
@@ -67,12 +79,7 @@
   margin-bottom: 30px;
 }
 
-.loginScreen__body > h1 {
-  font-size: 3.125rem;
-  margin-bottom: 20px;
-
-}
-
+/* Styling for the email input field */
 .loginScreen__input > form > input {
   padding: 10px;
   outline-width: 0;
@@ -82,15 +89,17 @@
   max-width: 600px;
 }
 
-.loginScreen__getStarted{
+/* Styling for the "Get Started" button in the form */
+.loginScreen__getStarted {
   padding: 16px 20px;
-    font-size: 1rem;
+  font-size: 1rem;
   color: #fff;
   background-color: #e50914;
   border: none;
   font-weight: 600;
 }
 
-.loginScreen__input{
+/* Margin styling for the input container */
+.loginScreen__input {
   margin-top: 20px;
 }
