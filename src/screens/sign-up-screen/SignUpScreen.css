@@ -1,0 +1,66 @@
+/* Styles for the overall sign-up screen container */
+.signUpScreen {
+  max-width: 300px; /* Restrict the maximum width to keep the form compact */
+  padding: 70px; /* Generous padding to distance the form from the container edges */
+  margin-left: auto; /* Center the form horizontally */
+  margin-right: auto; /* Center the form horizontally */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.85
+  ); /* Semi-transparent black background for focus */
+}
+
+/* Styles applied to the form within the sign-up screen */
+.signUpScreen > form {
+  display: grid; /* Use grid layout for easy management of form elements */
+  grid-template-columns: 1fr; /* Single column layout */
+}
+
+/* Styles for all input fields within the form */
+.signUpScreen > form > input {
+  outline-width: 0; /* Remove default focus outline for a clean look */
+  height: 40px; /* Fixed height for all input fields */
+  margin-bottom: 14px; /* Spacing between form elements */
+  border-radius: 5px; /* Slightly rounded corners for a modern feel */
+  border: none; /* Remove default border */
+  padding: 5px 15px; /* Padding inside the input fields for text alignment */
+}
+
+/* Styles for the submit button in the form */
+.signUpScreen > form > button {
+  padding: 16px 20px; /* Padding to increase button size for easier interaction */
+  font-size: 1rem; /* Standard readable font size */
+  color: #fff; /* White text color for contrast */
+  background-color: #e50914; /* Netflix brand red for emphasis and branding */
+  border: none; /* No borders for a clean button */
+  font-weight: 600; /* Semi-bold font to make the button text stand out */
+  cursor: pointer; /* Pointer cursor to indicate clickable */
+  margin-top: 20px; /* Space above the button to separate it from form elements */
+  border-radius: 5px; /* Rounded corners to match input fields */
+}
+
+/* Styles for the main heading in the form */
+.signUpScreen > form > h1 {
+  margin-bottom: 25px; /* Space below the heading for separation */
+  text-align: left; /* Align text to the left for standard form appearance */
+}
+
+/* Styles for the sub-heading or additional information text */
+.signUpScreen > form > h4 {
+  margin-top: 30px; /* Space above the text for visual separation */
+  text-align: left; /* Align text to the left for consistency */
+}
+
+/* Style for text elements that should appear in gray */
+.signUpScreen__gray {
+  color: gray; /* Gray color for less emphasis */
+}
+
+/* Styles for link-like text elements, typically for interactive text */
+.signUpScreen__link:hover {
+  cursor: pointer; /* Pointer cursor to indicate interactivity */
+  color: #fff; /* White color on hover for emphasis */
+  text-decoration: underline; /* Underline to signify clickable link */
+}

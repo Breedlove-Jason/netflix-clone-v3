@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PlansScreen.css";
-import db from "../firebase";
-import { selectUser } from "../features/userSlice";
+import db from "../../firebase";
+import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -11,12 +11,13 @@ const PlansScreen = () => {
   const [subscription, setSubscription] = useState(null);
 
   useEffect(() => {
+    // Fetch user's subscription data from Firestore
     db.collection("customers")
       .doc(user.uid)
       .collection("subscriptions")
       .get()
       .then((querySnapshot) => {
-        querySnapshot.forEach(async (subscription) => {
+        querySnapshot.forEach((subscription) => {
           setSubscription({
             role: subscription.data().role,
             current_period_end: subscription.data().current_period_end.seconds,
@@ -28,6 +29,7 @@ const PlansScreen = () => {
   }, [user.uid]);
 
   useEffect(() => {
+    // Fetch available products and prices from Firestore
     const fetchProducts = async () => {
       const products = {};
       const querySnapshot = await db
@@ -49,9 +51,9 @@ const PlansScreen = () => {
 
     fetchProducts();
   }, []);
-  console.log(products);
-  console.log(subscription);
+
   const loadCheckout = async (priceId) => {
+    // Create a new checkout session in Firestore
     const docRef = await db
       .collection("customers")
       .doc(user.uid)
@@ -61,23 +63,23 @@ const PlansScreen = () => {
         success_url: window.location.origin,
         cancel_url: window.location.origin,
       });
+
+    // Listen for changes in the checkout session
     docRef.onSnapshot(async (snap) => {
       const { error, sessionId } = snap.data();
       if (error) {
         alert(`An error occurred: ${error.message}`);
       }
       if (sessionId) {
-        const stripe = await loadStripe(
-          "pk_test_51PFnMI01foXv66KIhbVeWG24hWrFBnmaiIVcJkEp93TFWYqngYdLp84GGxdeEAbDEHIJwd69vGz4Lhys2K2mcftV00EVE4CCOc",
-        );
+        // Redirect to Stripe Checkout when session is ready
+        const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
         await stripe.redirectToCheckout({ sessionId });
       }
-    }); // Added closing bracket here
+    });
   };
 
   return (
     <div className="plansScreen">
-      <br />
       {subscription && (
         <p>
           Renewal Date:{" "}
@@ -99,9 +101,9 @@ const PlansScreen = () => {
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            {productData.prices.map((price, index) => (
+            {productData.prices.map((price) => (
               <button
-                key={index}
+                key={price.priceId}
                 onClick={() => !isCurrentPackage && loadCheckout(price.priceId)}
               >
                 {isCurrentPackage ? "Current Package" : "Subscribe"}

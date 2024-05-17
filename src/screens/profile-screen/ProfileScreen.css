@@ -1,0 +1,75 @@
+/* Base styling for the profile screen */
+.profileScreen {
+  height: 100vh; /* Full height of the viewport */
+  background-color: black; /* Black background for the entire screen */
+  color: white; /* White text color for high contrast */
+}
+
+/* Container for the main content within the profile screen */
+.profileScreen__body {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  width: 50%; /* Take up half of the viewport width */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+  padding: 8%; /* Proportional padding */
+  max-width: 800px; /* Maximum width to constrain content on large screens */
+}
+
+/* Container for user info display, using flexbox for layout */
+.profileScreen__info {
+  display: flex; /* Display children (image and details) in a row */
+}
+
+/* Styling for the user's avatar image */
+.profileScreen__info > img {
+  height: 100px; /* Fixed height for the avatar */
+  width: 100px; /* Fixed width for the avatar */
+}
+
+/* Styling for the main heading in the profile body */
+.profileScreen__body > h1 {
+  font-size: 60px; /* Large font size for the heading */
+  font-weight: 400; /* Normal font weight for modern appearance */
+  border-bottom: 1px solid #282c2d; /* Subtle border under the text */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Container for user details */
+.profileScreen__details {
+  color: white; /* Ensure text is white for readability */
+  margin-left: 25px; /* Space from the image to the text */
+  flex: 1; /* Take up the remaining space in the flex container */
+}
+
+/* Styling for user email display */
+.profileScreen__details > h2 {
+  background-color: gray; /* Gray background for the email box */
+  font-size: 15px; /* Moderate font size for email */
+  padding: 15px; /* Padding inside the email box */
+  padding-left: 20px; /* Additional left padding for alignment */
+}
+
+/* Sign out button styles */
+.profileScreen__signOut {
+  padding: 10px 20px; /* Padding for button size */
+  font-size: 1rem; /* Standard font size */
+  margin-top: 5%; /* Space above the button */
+  width: 100%; /* Full width of its container */
+  font-weight: 600; /* Bold font weight for emphasis */
+  color: #fff; /* White text for readability */
+  background-color: #e50914; /* Netflix brand red for visual identity */
+  cursor: pointer; /* Pointer cursor to indicate clickable */
+  border: none; /* No border for a clean look */
+}
+
+/* Styling for the plans heading */
+.profileScreen__plans > h3 {
+  border-bottom: 1px solid #282c2d; /* Subtle border under the text */
+  padding-bottom: 10px; /* Space below the text */
+}
+
+/* Container for plans, includes top margin */
+.profileScreen__plans {
+  margin-top: 20px; /* Space above the plans section */
+}

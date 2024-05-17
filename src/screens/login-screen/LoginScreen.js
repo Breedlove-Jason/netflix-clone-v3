@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
-import SignUpScreen from "../SignUpScreen";
+import SignUpScreen from "../sign-up-screen/SignUpScreen";
 
 const LoginScreen = () => {
   const [signIn, setSignIn] = useState(false);
