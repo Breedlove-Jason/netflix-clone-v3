@@ -1,13 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
-import { auth } from "../firebase";
+import { auth, signOut } from "../firebase";
 import Nav from "../Nav";
 import "./ProfileScreen.css";
 import PlansScreen from "./PlansScreen";
 
 const ProfileScreen = () => {
   const user = useSelector(selectUser);
+
+  const handleSignOut = () => {
+    signOut(auth).catch((error) => {
+      console.error("Error signing out: ", error);
+    });
+  };
+
   return (
     <div className="profileScreen">
       <Nav />
@@ -24,10 +31,8 @@ const ProfileScreen = () => {
               <h3>Plans</h3>
               <PlansScreen />
               <button
-                className={"profileScreen__signOut"}
-                onClick={() => {
-                  auth.signOut();
-                }}
+                className="profileScreen__signOut"
+                onClick={handleSignOut}
               >
                 Sign Out
               </button>
