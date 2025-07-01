@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 import { auth, onAuthStateChanged } from "./firebase";
 import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screens/ProfileScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -15,7 +16,6 @@ function App() {
   useEffect(() => {
     return onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        // logged in
         dispatch(
           login({
             uid: userAuth.uid,
@@ -23,7 +23,7 @@ function App() {
           }),
         );
       } else {
-        dispatch(logout()); // logged out
+        dispatch(logout());
       }
     });
   }, [dispatch]);
@@ -31,14 +31,19 @@ function App() {
   return (
     <div className="app">
       <Router>
-        {!user ? (
-          <LoginScreen />
-        ) : (
-          <Routes>
-            <Route path="/profile" element={<ProfileScreen />} />
-            <Route path="/" element={<HomeScreen />} />
-          </Routes>
-        )}
+        <Routes>
+          {!user ? (
+            <>
+              <Route path="/signup" element={<SignUpScreen />} />
+              <Route path="*" element={<LoginScreen />} />
+            </>
+          ) : (
+            <>
+              <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/" element={<HomeScreen />} />
+            </>
+          )}
+        </Routes>
       </Router>
     </div>
   );

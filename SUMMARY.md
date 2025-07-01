@@ -15,7 +15,7 @@ This document summarizes the changes made to the Netflix Clone project to ensure
 
 ### 2. Firebase Authentication
 
-- Confirmed that the SignUpScreen component is properly implemented with the Firebase v10 modular SDK
+- Confirmed that the SignInScreen component is properly implemented with the Firebase v10 modular SDK
 - Verified that the authentication functions are correctly imported and used:
   - `createUserWithEmailAndPassword` for signup
   - `signInWithEmailAndPassword` for sign in
