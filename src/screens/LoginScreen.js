@@ -1,9 +1,16 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const handleGetStarted = (e) => {
+    e.preventDefault();
+    if (!email) return;
+    navigate("/signup", { state: { email } });
+  };
 
   return (
     <div className={"loginScreen"}>
@@ -15,25 +22,32 @@ const LoginScreen = () => {
         />
         <button
           className={"loginScreen__button"}
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/signin")}
         >
           Sign In
         </button>
+
         <div className="loginScreen__gradient" />
 
         <div className="loginScreen__body">
-          <h1>See what's next</h1>
+          <h1>See what's next!</h1>
           <h2>Watch anywhere. Cancel at any time.</h2>
           <h3>
             Ready to watch? Enter your email to create or restart your
             membership.
           </h3>
-          <div className={"loginScreen__input"}>
-            <form>
-              <input type="email" placeholder="Email Address" />
-              <Link to="/signup" className="loginScreen__getStarted">
+          <div className="loginScreen__input">
+            <form onSubmit={handleGetStarted}>
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button className="loginScreen__getStarted" type="submit">
                 GET STARTED
-              </Link>
+              </button>
             </form>
           </div>
         </div>

@@ -8,6 +8,7 @@ import { auth, onAuthStateChanged } from "./firebase";
 import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screens/ProfileScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import SignInScreen from "./screens/SignInScreen";
 
 function App() {
   const user = useSelector(selectUser);
@@ -35,6 +36,7 @@ function App() {
           {!user ? (
             <>
               <Route path="/signup" element={<SignUpScreen />} />
+              <Route path="/signin" element={<SignInScreen />} />
               <Route path="*" element={<LoginScreen />} />
             </>
           ) : (
