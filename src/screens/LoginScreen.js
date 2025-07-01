@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./LoginScreen.css";
-import SignUpScreen from "./SignUpScreen";
+import BackgroundWrapper from "../components/BackgroundWrapper";
 
 const LoginScreen = () => {
-  const [signIn, setSignIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    setSignIn(true);
-    // Add any login logic you might have here
-
-    navigate("/profile"); // Redirect to profile
-  };
-
   return (
-    <div className={"loginScreen"}>
+    <BackgroundWrapper>
       <div className="loginScreen__background">
         <img
           className="loginScreen__logo"
@@ -24,38 +16,30 @@ const LoginScreen = () => {
         />
         <button
           className={"loginScreen__button"}
-          onClick={() => handleSignIn()}
+          onClick={() => navigate("/profile")}
         >
           Sign In
         </button>
         <div className="loginScreen__gradient" />
+
         <div className="loginScreen__body">
-          {signIn ? (
-            <SignUpScreen />
-          ) : (
-            <>
-              <h1>See what's next</h1>
-              <h2>Watch anywhere. Cancel at any time.</h2>
-              <h3>
-                Ready to watch? Enter your email to create or restart your
-                membership.
-              </h3>
-              <div className={"loginScreen__input"}>
-                <form>
-                  <input type="email" placeholder="Email Address" />
-                  <button
-                    onClick={() => setSignIn(true)}
-                    className={"loginScreen__getStarted"}
-                  >
-                    GET STARTED
-                  </button>
-                </form>
-              </div>
-            </>
-          )}
+          <h1>See what's next</h1>
+          <h2>Watch anywhere. Cancel at any time.</h2>
+          <h3>
+            Ready to watch? Enter your email to create or restart your
+            membership.
+          </h3>
+          <div className={"loginScreen__input"}>
+            <form>
+              <input type="email" placeholder="Email Address" />
+              <Link to="/signup" className="loginScreen__getStarted">
+                GET STARTED
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </BackgroundWrapper>
   );
 };
 

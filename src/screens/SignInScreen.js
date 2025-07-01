@@ -4,10 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "../firebase";
-import "./SignUpScreen.css";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import "./SignInScreen.css";
 
-const SignUpScreen = () => {
+const SignInScreen = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const register = (e) => {
@@ -64,4 +63,4 @@ const SignUpScreen = () => {
   );
 };
 
-export default SignUpScreen;
+export default SignInScreen;

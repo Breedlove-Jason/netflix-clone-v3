@@ -4,6 +4,7 @@ import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 import { auth, onAuthStateChanged } from "./firebase";
 import { login, logout, selectUser } from "./features/userSlice";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -15,7 +16,6 @@ function App() {
   useEffect(() => {
     return onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        // logged in
         dispatch(
           login({
             uid: userAuth.uid,
@@ -23,7 +23,7 @@ function App() {
           }),
         );
       } else {
-        dispatch(logout()); // logged out
+        dispatch(logout());
       }
     });
   }, [dispatch]);
@@ -31,14 +31,19 @@ function App() {
   return (
     <div className="app">
       <Router>
-        {!user ? (
-          <LoginScreen />
-        ) : (
-          <Routes>
-            <Route path="/profile" element={<ProfileScreen />} />
-            <Route path="/" element={<HomeScreen />} />
-          </Routes>
-        )}
+        <Routes>
+          {!user ? (
+            <>
+              <Route path="/signup" element={<SignUpScreen />} />
+              <Route path="*" element={<LoginScreen />} />
+            </>
+          ) : (
+            <>
+              <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/" element={<HomeScreen />} />
+            </>
+          )}
+        </Routes>
       </Router>
     </div>
   );
